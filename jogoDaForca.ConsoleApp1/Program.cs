@@ -2,6 +2,7 @@
 {
     internal class Program
     {
+        #region declarandoVariaveis
         static string[] palavras = {
 "ABACATE",
 "ABACAXI",
@@ -36,15 +37,86 @@
         static char[] letras = new char[10], palavraFeita = new char[10];
         static int quantidadeDeTentativas = 5,contador = 0;
         static char letraDigitada;
-        static string strLetra,palavra;
+        static string strLetra,palavra,opcao,palavraChute;
+        #endregion
 
+        static void FazerDesenhoForca()
+        {
+            switch (contador)
+            {
+                case 0:
+                    Console.Clear();
+                    Console.WriteLine(" _________     ");
+                    Console.WriteLine("|         |    ");
+                    Console.WriteLine("|         O    ");
+                    Console.WriteLine("|        /|\\  ");
+                    Console.WriteLine("|        / \\  ");
+                    Console.WriteLine("|              ");
+                    Console.WriteLine("|______________\n");
+                    break;
+
+                case 1:
+                    Console.Clear();
+                    Console.WriteLine(" _________     ");
+                    Console.WriteLine("|         |    ");
+                    Console.WriteLine("|         O    ");
+                    Console.WriteLine("|        /|  ");
+                    Console.WriteLine("|        / \\  ");
+                    Console.WriteLine("|              ");
+                    Console.WriteLine("|______________\n");
+                    MostrarPalavra();
+                    break;
+
+                case 2:
+                    Console.Clear();
+                    Console.WriteLine(" _________     ");
+                    Console.WriteLine("|         |    ");
+                    Console.WriteLine("|         O    ");
+                    Console.WriteLine("|         |  ");
+                    Console.WriteLine("|        / \\  ");
+                    Console.WriteLine("|              ");
+                    Console.WriteLine("|______________\n");
+                    MostrarPalavra();
+                    break;
+
+                case 3:
+                    Console.Clear();
+                    Console.WriteLine(" _________     ");
+                    Console.WriteLine("|         |    ");
+                    Console.WriteLine("|         O    ");
+                    Console.WriteLine("|         |  ");
+                    Console.WriteLine("|        /   ");
+                    Console.WriteLine("|              ");
+                    Console.WriteLine("|______________\n");
+                    MostrarPalavra();
+                    break;
+
+                case 4:
+                    Console.Clear();
+                    Console.WriteLine(" _________     ");
+                    Console.WriteLine("|         |    ");
+                    Console.WriteLine("|         O    ");
+                    Console.WriteLine("|           ");
+                    Console.WriteLine("|            ");
+                    Console.WriteLine("|              ");
+                    Console.WriteLine("|______________\n");
+                    MostrarPalavra();
+                    break;
+
+                default:
+                    MensagemErro("ERRO!");
+                    break;
+            }
+
+           
+        }
         static char[] PegarPalavra()
         {
             Random numeroRand = new Random();
             palavra = palavras[numeroRand.Next(0, 31)];
             letras = palavra.ToCharArray();
 
-            return letras;
+            return letras; 
 
         }
 
@@ -54,12 +126,35 @@
             Console.WriteLine(mensagem);
             Console.ResetColor();
         }
-        // FAZENDO UM BOOL P VERRIFICAR SE QUER CHUTAR OU CONTINUAR
         static bool ChutarPalavra()
         {
-            Console.WriteLine("Deseja chutar a palavra: (S) (N)");
+            Console.WriteLine("\nDeseja chutar a palavra: (S) (N)");
+            opcao = Console.ReadLine();
 
-            
+            if (opcao == "S" || opcao == "s") {
+                Console.WriteLine("Qual a palavra que voce acha que eh: ");
+                palavraChute = Console.ReadLine().ToUpper();
+
+                if (palavraChute == palavra)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Parabens voce acertou!");
+                    Console.ResetColor ();
+                }
+                else
+                {
+                    MensagemErro("Infelizmente voce errou!");
+                    MensagemErro($"A palavra era {palavra}");
+                }
+
+                return true;
+            }
+
+            else if (opcao == "N" ||  opcao == "n") {
+                return false;
+            }
+
+            return ChutarPalavra();
         }
 
         static char InputLetra()
@@ -136,24 +231,24 @@
         {
             while(verificarTentativas())
             {
+                FazerDesenhoForca();
                 InputLetra();
                 VerificarAcertouLetra();
                 MostrarPalavra();
+                if (ChutarPalavra() == true)
+                {
+                    break;
+                }
+                
+
                 contador++;
             }
         }
-
-
-        
-        
         static void Main(string[] args)
         {
-
-
-            Console.ResetColor();
+            FazerDesenhoForca();
             PegarPalavra();
             FazerJogo();
-
         }
     }
 }
