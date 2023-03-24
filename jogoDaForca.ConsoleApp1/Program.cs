@@ -60,7 +60,7 @@
                     Console.WriteLine(" _________     ");
                     Console.WriteLine("|         |    ");
                     Console.WriteLine("|         O    ");
-                    Console.WriteLine("|        /|  ");
+                    Console.WriteLine("|        /|    ");
                     Console.WriteLine("|        / \\  ");
                     Console.WriteLine("|              ");
                     Console.WriteLine("|______________\n");
@@ -72,7 +72,7 @@
                     Console.WriteLine(" _________     ");
                     Console.WriteLine("|         |    ");
                     Console.WriteLine("|         O    ");
-                    Console.WriteLine("|         |  ");
+                    Console.WriteLine("|         |    ");
                     Console.WriteLine("|        / \\  ");
                     Console.WriteLine("|              ");
                     Console.WriteLine("|______________\n");
@@ -84,8 +84,8 @@
                     Console.WriteLine(" _________     ");
                     Console.WriteLine("|         |    ");
                     Console.WriteLine("|         O    ");
-                    Console.WriteLine("|         |  ");
-                    Console.WriteLine("|        /   ");
+                    Console.WriteLine("|         |    ");
+                    Console.WriteLine("|        /     ");
                     Console.WriteLine("|              ");
                     Console.WriteLine("|______________\n");
                     MostrarPalavra();
@@ -96,8 +96,8 @@
                     Console.WriteLine(" _________     ");
                     Console.WriteLine("|         |    ");
                     Console.WriteLine("|         O    ");
-                    Console.WriteLine("|           ");
-                    Console.WriteLine("|            ");
+                    Console.WriteLine("|              ");
+                    Console.WriteLine("|              ");
                     Console.WriteLine("|              ");
                     Console.WriteLine("|______________\n");
                     MostrarPalavra();
@@ -122,7 +122,7 @@
 
         static void MensagemErro(string mensagem)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine(mensagem);
             Console.ResetColor();
         }
@@ -168,8 +168,10 @@
 
         static bool verificarTentativas()
         {
-            if (contador == 5)
+            if (contador == quantidadeDeTentativas)
             {
+                MensagemErro("Infelizmente voce perdeu!");
+                MensagemErro($"A palabra era {palavra}");
                 return false;
             }
 
