@@ -2,6 +2,7 @@
 {
     internal class Program
     {
+        // Meu irmao ta como contribuidor porque fiz pelo noot dele, ai devo ter dado push com o git dele!
         #region declarandoVariaveis
         static string[] palavras = {
 "ABACATE",
